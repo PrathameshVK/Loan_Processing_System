@@ -1,8 +1,22 @@
 import React, {useContext} from 'react';
 import Axios from "axios";
 import {userInfo} from "../App";
+import {useAuth} from '../context/AuthContext';
+import { useNavigate } from 'react-router';
 
 export default function Form() {
+
+    const {currentUser,logout}=useAuth();
+    const history=useNavigate();
+
+    const handleLogout=async ()=>{
+        try{
+            await logout();
+            history('/login');
+        }catch{
+
+        }
+    }
 
     const {name, address, pan, loanAmount, tenure}=useContext(userInfo);
     
@@ -66,6 +80,11 @@ export default function Form() {
                 <button onClick={(e)=>addToList(e)} type="submit">Apply</button>
                 <button onClick={(e)=>updateList(e)} type="submit">Add</button>
             </form>
+            {
+                currentUser &&
+                currentUser.uid
+            }
+            <button onClick={handleLogout}>Logout</button>
         </div>
     )
 }

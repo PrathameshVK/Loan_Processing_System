@@ -1,8 +1,13 @@
 import React, {useState, createContext, useEffect} from "react";
 import Form from './components/Form';
 import LoanInfo from "./components/LoanInfo";
-import './App.css';
 import Axios from "axios";
+import Login from "./pages/Login";
+import {Routes, Route} from 'react-router-dom';
+import { AuthProvider } from "./context/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
+
+import './App.css';
 
 export const userInfo=createContext();
 
@@ -26,6 +31,7 @@ function App() {
 
   return (
     <div className="App">
+      <AuthProvider>
       <userInfo.Provider value={{
         name: [name, setName],
         address: [address, setAddress],
@@ -33,18 +39,27 @@ function App() {
         loanAmount: [loanAmount, setLoanAmount],
         tenure: [tenure, setTenure]
       }}>
-        <Form />
+        <Routes>
+          <Route path="/" element={
+            <PrivateRoute>
+            <Form />
+            </PrivateRoute>
+          }/>
+          <Route path="/login" element={<Login/>}/>
+        </Routes>
       </userInfo.Provider>
-      <h1>Loan List</h1><br/>
+      </AuthProvider>
+    </div>
+  );
+}
+
+export default App;
+
+      {/* <h1>Loan List</h1><br/>
       {
         loanList.map((item,key)=>{
           return item.loansApplied.map((loanData,key)=>{
             return <LoanInfo key={loanData._id} loanData={loanData}/>
           })
         })
-      }
-    </div>
-  );
-}
-
-export default App;
+      } */}
