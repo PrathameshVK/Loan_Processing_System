@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
-import {Link, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 export default function Login() {
 
-    const {login}=useAuth();
+    const {login, currentUser}=useAuth();
     const [loading, setLoading]=useState(false);
     const [error, setError]=useState('');
     const history=useNavigate();
 
-    const handleSignup= async (e)=>{
-        e.preventDefault();
+    const handleSignup= async ()=>{
         try{
             setError("");
             setLoading(true);
@@ -24,7 +23,10 @@ export default function Login() {
 
     return (
         <div>
-            <button onClick={(e)=>handleSignup(e)} >Sign in with google</button>        
+            {
+                currentUser?history('/')
+                :<button disabled={loading} onClick={handleSignup} >Sign in with google</button>        
+            }
         </div>
     )
 }

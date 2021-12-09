@@ -1,6 +1,6 @@
 import React, {useContext} from 'react';
 import Axios from "axios";
-import {userInfo} from "../App";
+import {userInfo} from "../context/UserContext";
 import {useAuth} from '../context/AuthContext';
 import { useNavigate } from 'react-router';
 
