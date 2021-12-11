@@ -1,0 +1,87 @@
+.loan-info-div{
+    background-color: white;
+}
+
+.loan-list-item{
+    width: 70%;
+    height: 10vh;
+    border-radius: 5px;
+    padding-top: 10px;
+    margin: 0 auto;
+    font-weight: 600;
+    margin-bottom: 1%;
+    background-color: rgb(221, 221, 221);
+    &:hover{
+        cursor: pointer;
+    }
+}    
+.loan-info-modal{
+    width: 70%;
+    text-align: left;
+    margin: 0 auto;
+    margin-top: 20%;
+    padding: 5%;
+    background-color: rgb(221, 220, 220);
+    border-radius: 5px;
+    .delete-btn{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+
+@media (min-width: 1281px) {
+  
+    .loan-list-item{
+        width: 30%;
+    }    
+    .loan-info-modal{
+        width: 40%;
+        font-size: 1.3rem;
+        margin-top: 5%;
+    }
+    
+  }
+  
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    
+    .loan-list-item{
+        width: 30%;
+    }    
+    .loan-info-modal{
+        width: 40%;
+        font-size: 1.2rem;
+        margin-top: 5%;
+    }
+    
+  }
+
+  
+  @media (min-width: 768px) and (max-width: 1024px) {
+    
+    .loan-list-item{
+        width: 37%;
+    }    
+    .loan-info-modal{
+        width: 40%;
+        font-size: 1.1rem;
+        margin-top: 10%;
+    }
+    
+  }
+
+
+  @media (min-width: 320px) and (max-width: 480px) {
+    
+    .loan-list-item{
+        width: 80%;
+        font-size: 1rem;
+        padding: 2%;
+    }    
+    .loan-info-modal{
+        width: 80%;
+        font-size: 1rem;
+        margin-top: 25%;
+    }
+    
+  }

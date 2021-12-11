@@ -1,0 +1,46 @@
+.header{
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+    h1{
+        margin-left: 10%;
+    }
+    .logout-btn{
+        height: 5vh;
+        font-size: 2rem;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+.form-modal{
+    background-color: white;
+    padding: 5%;
+    border: 1px solid black;
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 5%;
+}
+.add-btn{
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    height: 50px;
+    width: 50px;
+    border-style: none;
+    border-radius: 50%;
+    z-index: 100;
+    &:hover{
+        cursor: pointer;
+    }
+}
+  
+  @media (min-width: 320px) and (max-width: 480px) {
+    .form-modal{
+        margin-top: 30%;
+        width: 80%;
+    }
+    
+  }

@@ -6,8 +6,8 @@ export function UserContext({children}) {
     const[name, setName]=useState("");
     const[address, setAddress]=useState("");
     const[pan, setPan]=useState("");
-    const[loanAmount, setLoanAmount]=useState("");
-    const[tenure, setTenure]=useState("");
+    const[loanAmount, setLoanAmount]=useState(0);
+    const[tenure, setTenure]=useState(0);
 
     const value={
         name: [name, setName],

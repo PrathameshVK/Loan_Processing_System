@@ -1,22 +1,14 @@
-import React, {useContext} from 'react';
+import React, {useContext, useState} from 'react';
 import Axios from "axios";
 import {userInfo} from "../context/UserContext";
 import {useAuth} from '../context/AuthContext';
-import { useNavigate } from 'react-router';
+import {IoIosCloseCircleOutline, IoIosSend} from "react-icons/io";
+import Modal from 'react-modal';
+import '../styles/Form.styles.scss';
 
-export default function Form() {
+export default function Form({setOpenModal}) {
 
-    const {currentUser,logout}=useAuth();
-    const history=useNavigate();
-
-    const handleLogout=async ()=>{
-        try{
-            await logout();
-            history('/login');
-        }catch{
-
-        }
-    }
+    const {currentUser}=useAuth();
 
     const {name, address, pan, loanAmount, tenure}=useContext(userInfo);
     
@@ -25,32 +17,34 @@ export default function Form() {
     const [statePan, setStatePan]=pan;
     const [stateLoanAmount, setStateLoanAmount]=loanAmount;
     const [stateTenure, setStateTenure]=tenure;
+    const [emi, setEmi]=useState(0);
+    const [confirmModal, setConfirmModal]=useState(false);
 
-    const addToList=(e)=>{
-        e.preventDefault();
-        Axios.post('http://localhost:5000/insert',{
-            name: stateName,
-            address: stateAddress,
-            pan: statePan,
-            loanAmount: stateLoanAmount,
-            tenure: stateTenure
-        });
+    const calcEMI=()=>{
+        const interest=(stateLoanAmount*(8.9*0.01))/stateTenure*12;
+        const total=((stateLoanAmount/(stateTenure*12))+interest).toFixed(2);
+        return setEmi(total);
     }
 
     const updateList=(e)=>{
         e.preventDefault();
         Axios.post('http://localhost:5000/add',{
+            userid: currentUser.uid,
             name: stateName,
             address: stateAddress,
             pan: statePan,
             loanAmount: stateLoanAmount,
-            tenure: stateTenure
+            tenure: stateTenure,
+            emi: emi
         })
     }
 
     return (
         <div>
-            <h1>Loan Application Form</h1>
+            <div className='form-header'>
+                <h1>Loan Application Form</h1>
+                <IoIosCloseCircleOutline className='close-btn' onClick={()=>setOpenModal(false)} />
+            </div>
             <form>
                 <input
                     placeholder="name"
@@ -76,15 +70,21 @@ export default function Form() {
                     placeholder="Tenure"
                     type="text"
                     onChange={(e)=>{setStateTenure(e.target.value)}}
+                    required
                 /><br/>
-                <button onClick={(e)=>addToList(e)} type="submit">Apply</button>
-                <button onClick={(e)=>updateList(e)} type="submit">Add</button>
+                <button type='submit' onClick={(e)=>{e.preventDefault();calcEMI();setConfirmModal(true)}} className='apply'>
+                    Apply
+                </button> 
+                <Modal className="confirm-modal" isOpen={confirmModal}>
+                    Confirm apply ?<br/>
+                    EMI : {(emi>0 || emi==="Infinity")?emi:"0"}<br/>
+                    <div>
+                        <button onClick={()=>setConfirmModal(false)}>cancel</button>
+                        <IoIosSend className='send-form' onClick={(e)=>{updateList(e);setOpenModal(false)}}/>
+                    </div>
+                </Modal>
             </form>
-            {
-                currentUser &&
-                currentUser.uid
-            }
-            <button onClick={handleLogout}>Logout</button>
+            
         </div>
     )
 }

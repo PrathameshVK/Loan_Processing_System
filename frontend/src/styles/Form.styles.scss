@@ -1,0 +1,199 @@
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  h1 {
+    font-size: 1rem;
+  }
+  .close-btn {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+.apply {
+  margin-left: 50%;
+  margin-top: 5%;
+  border: none;
+  height: 4vh;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  width: 25vw;
+  justify-content: space-between;
+  &:hover {
+    cursor: pointer;
+  }
+}
+.send-form {
+  font-size: 1rem;
+}
+.confirm-modal {
+  background-color: rgb(199, 199, 199);
+  height: 15vh;
+  width: 70%;
+  margin: 0 auto;
+  margin-top: 20%;
+  align-items: center;
+  padding-top: 2%;
+  text-align: center;
+  border-radius: 5px;
+  div {
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+    margin: 0 auto;
+    align-items: center;
+    margin-top: 2%;
+    button {
+      border-style: none;
+      border-radius: 5px;
+    }
+  }
+}
+
+@media (min-width: 1281px) {
+  .form-header {
+    font-size: 2rem;
+    width: 95%;
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  form {
+    margin-top: 2%;
+    input {
+      width: 50%;
+      height: 5vh;
+      margin-bottom: 1%;
+      padding-left: 2%;
+    }
+  }
+  .apply {
+    margin-left: 70%;
+    margin-top: 3%;
+    height: 6vh;
+    border-radius: 5px;
+    padding-left: 3%;
+    width: 8vw;
+  }
+  .confirm-modal {
+    width: 30%;
+    margin-top: 10%;
+    padding-top: 2%;
+    div {
+      width: 20%;
+      margin-top: 2%;
+    }
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1280px) {
+  .form-header {
+    font-size: 1.5rem;
+    width: 95%;
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+  form {
+    margin-top: 2%;
+    input {
+      width: 50%;
+      height: 5vh;
+      margin-bottom: 1%;
+      padding-left: 2%;
+    }
+  }
+  .apply {
+    margin-left: 70%;
+    margin-top: 3%;
+    height: 6vh;
+    border-radius: 5px;
+    padding-left: 3%;
+    width: 9vw;
+  }
+  .confirm-modal {
+    width: 30%;
+    margin-top: 15%;
+    padding-top: 2%;
+    div {
+      width: 35%;
+      margin-top: 2%;
+    }
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .form-header {
+    font-size: 2rem;
+    width: 95%;
+    h1 {
+      font-size: 2rem;
+    }
+  }
+  form {
+    margin-top: 2%;
+    input {
+      width: 50%;
+      height: 5vh;
+      margin-bottom: 1%;
+      padding-left: 2%;
+    }
+  }
+  .apply {
+    margin-left: 70%;
+    margin-top: 3%;
+    height: 6vh;
+    border-radius: 5px;
+    padding-left: 3%;
+    width: 9vw;
+  }
+  .confirm-modal {
+    width: 30%;
+    margin-top: 30%;
+    padding-top: 2%;
+    div {
+      width: 40%;
+      margin-top: 2%;
+    }
+  }
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+  .form-header {
+    font-size: 1.2rem;
+    width: 95%;
+    h1 {
+      font-size: 1.2rem;
+    }
+  }
+  form {
+    margin-top: 2%;
+    input {
+      width: 50%;
+      height: 5vh;
+      margin-bottom: 1%;
+      padding-left: 2%;
+    }
+  }
+  .apply {
+    margin-left: 60%;
+    margin-top: 3%;
+    height: 6vh;
+    border-radius: 5px;
+    padding-left: 4%;
+    width: 15vw;
+  }
+  
+  .confirm-modal {
+    width: 50%;
+    margin-top: 50%;
+    padding-top: 2%;
+    div {
+      width: 50%;
+      margin-top: 2%;
+    }
+  }
+}

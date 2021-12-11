@@ -1,23 +1,14 @@
-import React, {useState, useEffect} from "react";
-import Form from './components/Form';
-import Axios from "axios";
+import React from "react";
 import Login from "./pages/Login";
 import {Routes, Route} from 'react-router-dom';
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 import { UserContext } from "./context/UserContext";
+import Home from "./pages/Home";
 import './App.scss';
 
 function App() {
-  const[loanList, setLoanList]=useState([]);
-
-  useEffect(() => {
-    Axios.get("http://localhost:5000/read")
-    .then(res=>{
-      setLoanList(res.data);
-    })
-  }, [loanList,setLoanList])
-
+  
   return (
     <div className="App">
       <AuthProvider>
@@ -25,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={
             <PrivateRoute>
-            <Form />
+            <Home />
             </PrivateRoute>
           }/>
           <Route path="/login" element={<Login/>}/>
@@ -37,12 +28,3 @@ function App() {
 }
 
 export default App;
-
-      {/* <h1>Loan List</h1><br/>
-      {
-        loanList.map((item,key)=>{
-          return item.loansApplied.map((loanData,key)=>{
-            return <LoanInfo key={loanData._id} loanData={loanData}/>
-          })
-        })
-      } */}
