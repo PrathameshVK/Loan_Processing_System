@@ -18,35 +18,6 @@ mongoose.connect(process.env.LOAN_DB_URI,{
     useNewUrlParser:true,
 })
 
-app.post('/insert',async (req,res)=>{
-    const userId=req.body.userid;
-    const userName=req.body.name;
-    const address=req.body.address;
-    const pan=req.body.pan;
-    const loanAmount=req.body.loanAmount;
-    const tenure=req.body.tenure;
-    const loan=new Loan({
-        userid: userId,
-        loansApplied: [
-            {
-                username: userName,
-                address: address,
-                PAN: pan,
-                loanAmount: loanAmount,
-                tenure: tenure,
-                EMI: 1000,
-                status: "Approved"
-            }
-        ]
-    });
-    try{
-        await loan.save();
-        res.send("data inserted");
-    }catch(err){
-        console.error(err);
-    }
-});
-
 app.post('/read',async (req,res)=>{
     const user=req.body.user;
     Loan.find({userid: {$eq: user}},(err,result)=>{
@@ -74,7 +45,7 @@ app.post('/add',async (req,res)=>{
                 loanAmount: loanAmount,
                 tenure: tenure,
                 EMI: emi,
-                status: "Approved"
+                status: "Processing"
             }
         ]}},{upsert: true, new: true, setDefaultsOnInsert: true},
             (err,result)=>{
