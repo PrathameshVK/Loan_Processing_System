@@ -41,7 +41,7 @@ export default function Home() {
           <h1>Loan List</h1>
           <FiLogOut onClick={()=>handleLogout()} className='logout-btn' />
           </div><br/>
-        <LoansList loanList={loanList}/>
+            <LoansList loanList={loanList}/>
             <Modal className='form-modal' isOpen={openModal}>
                 <Form setOpenModal={setOpenModal} />
             </Modal>

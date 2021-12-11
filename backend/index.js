@@ -12,10 +12,12 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-
-
 mongoose.connect(process.env.LOAN_DB_URI,{
     useNewUrlParser:true,
+})
+
+app.get('/',(req,res)=>{
+    res.send('server is running');
 })
 
 app.post('/read',async (req,res)=>{
@@ -70,11 +72,12 @@ app.post('/delete',async (req,res)=>{
         if(err){
             res.send(err);
         }
+        res.send(result)
     });
 });
 
 app.listen(port,()=>{
-    console.log(`Listening on port ${port}`);
+    console.log(`Server is running`);
 })
 
 export default app;

@@ -21,7 +21,7 @@ export default function Form({setOpenModal}) {
     const [confirmModal, setConfirmModal]=useState(false);
 
     const calcEMI=()=>{
-        const interest=(stateLoanAmount*(8.9*0.01))/stateTenure*12;
+        const interest=(stateLoanAmount*(8.9*0.01))/(stateTenure*12);
         const total=((stateLoanAmount/(stateTenure*12))+interest).toFixed(2);
         return setEmi(total);
     }
